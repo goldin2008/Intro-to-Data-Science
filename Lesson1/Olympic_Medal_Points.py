@@ -30,7 +30,16 @@ def numpy_dot():
     bronze = [9, 10, 5, 12, 9, 5, 2, 1, 5, 7, 1, 2, 2, 6, 2, 4, 3, 1, 2, 1, 0, 6, 2, 1, 0, 1]
  
     # YOUR CODE HERE
-     
+    # ANSWER
+    olympic_medal_counts = {'country_name':Series(countries),
+                            'gold': Series(gold),
+                            'silver': Series(silver),
+                            'bronze': Series(bronze)}
+    olympic_medal_counts_df = DataFrame(olympic_medal_counts)
+    medal_counts = olympic_medal_counts_df[['gold', 'silver', 'bronze']]
+    points = numpy.dot(medal_counts, [4, 2, 1])
+    
+    # MY SOLUTION
     points = numpy.dot(gold, 4) + numpy.dot(silver, 2) + numpy.dot(bronze, 1)
     olympic_points = {'country_name':countries,
                             'points': Series(points)}
