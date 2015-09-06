@@ -15,8 +15,9 @@ def add_full_name(path_to_csv, path_to_new_csv):
 	#path_to_new_csv
 
     #WRITE YOUR CODE HERE
-
-
+    dataframe = pandas.read_csv(path_to_csv) #READ CSV File
+    dataframe['nameFull'] = dataframe['nameFirst'] + ' ' + dataframe['nameLast'] #CREATE a new column
+    dataframe.to_csv(path_to_new_csv)
 
 if __name__ == "__main__":
     # For local use only
