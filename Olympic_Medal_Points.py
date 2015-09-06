@@ -30,6 +30,7 @@ def numpy_dot():
     bronze = [9, 10, 5, 12, 9, 5, 2, 1, 5, 7, 1, 2, 2, 6, 2, 4, 3, 1, 2, 1, 0, 6, 2, 1, 0, 1]
  
     # YOUR CODE HERE
+     
     points = numpy.dot(gold, 4) + numpy.dot(silver, 2) + numpy.dot(bronze, 1)
     olympic_points = {'country_name':countries,
                             'points': Series(points)}
