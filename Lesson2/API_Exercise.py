@@ -16,6 +16,6 @@ def api_get_request(url):
     #Make our API call using the requests library and load the results into a dict.
     data = requests.get(url).text
     data = json.loads(data)
-    
+
     #Print out the name of the #1 top artist.
     print data['topartists']['artist'][0]['name']
