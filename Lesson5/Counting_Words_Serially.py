@@ -50,6 +50,7 @@ def word_count():
         data = line.strip().split(" ")
         
         # Your code here
+        #Clean the data
         for i in data:
             key = i.translate(string.maketrans("",""), string.punctuation).lower()
             if key in word_counts.keys():
