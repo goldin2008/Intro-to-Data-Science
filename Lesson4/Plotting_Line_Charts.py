@@ -23,5 +23,9 @@ def lineplot_compare(hr_by_team_year_sf_la_csv):
     # ggplot(data, aes(xvar, yvar, color=category_var)). This should help you 
     # in this exercise.
     
-    gg = #YOUR CODE GOES HERE
+    data = pandas.read_csv(hr_by_team_year_sf_la_csv)
+ 
+    gg =ggplot(data, aes('yearID', 'HR', color = 'teamID')) + \
+    geom_point() + geom_line() + \
+      ggtitle('title') + xlab('yearID') + ylab('HR')
     return gg
