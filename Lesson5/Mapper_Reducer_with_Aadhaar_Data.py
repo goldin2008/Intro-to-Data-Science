@@ -48,8 +48,10 @@ def reducer():
     for line in sys.stdin:
         #your code here
         data = line.strip().split("\t")
+        
         if len(data) != 2:
             continue
+          
         this_key, count = data
         
         if old_key and old_key != this_key:
