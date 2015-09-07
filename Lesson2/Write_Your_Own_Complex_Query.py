@@ -36,7 +36,8 @@ def aggregate_query(filename):
     # into this exercise below:
     # https://www.dropbox.com/s/vn8t4uulbsfmalo/aadhaar_data.csv
         
-    q = # your code here
+    q = """ SELECT gender, district, sum(aadhaar_generated) FROM aadhaar_data WHERE age > 50 GROUP BY gender, district"""
+
 
     # Execute your SQL command against the pandas frame
     aadhaar_solution = pandasql.sqldf(q.lower(), locals())
