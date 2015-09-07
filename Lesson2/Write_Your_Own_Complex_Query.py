@@ -35,7 +35,8 @@ def aggregate_query(filename):
     # You can download a copy of the aadhaar data that we are passing 
     # into this exercise below:
     # https://www.dropbox.com/s/vn8t4uulbsfmalo/aadhaar_data.csv
-        
+    
+    #Note that whatever columns we select, that we don't aggregate, we need to group by. In this case, gender and district.    
     q = """ SELECT gender, district, sum(aadhaar_generated) FROM aadhaar_data WHERE age > 50 GROUP BY gender, district"""
 
 
