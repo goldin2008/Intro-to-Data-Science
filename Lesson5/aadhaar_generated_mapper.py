@@ -35,34 +35,8 @@ def mapper():
         #Tokenize the line of data
         data = line.strip().split(",") 
         
-        if len(data) != 12 | data[0] == 'Registrar':
+        if len(data) != 12 or data[0] == 'Registrar':
             continue
         print "{0}\t{1}".format(data[3], data[8])
 
 mapper()
-
-def reducer():
-    aadhaar_generated = 0
-    old_key = None
-    
-    for line in sys.stdin:
-        #your code here
-        data = line.strip().split("\t")
-        
-        if len(data) != 2:
-            continue
-          
-        this_key, count = data
-        
-        if old_key and old_key != this_key:
-            print "{0}\t{1}".format(old_key, aadhaar_generated)
-            
-            aadhaar_generated = 0
-        
-        old_key = this_key
-        aadhaar_generated += float(count)
-        
-    if old_key != None:
-        print "{0}\t{1}".format(old_key, aadhaar_generated)
-
-reducer():
