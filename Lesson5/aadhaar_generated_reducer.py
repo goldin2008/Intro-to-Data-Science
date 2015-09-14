@@ -70,11 +70,12 @@ def reducer():
         else:
             # state change (previous line was k=x, this line is k=y)
             result = [last_key, aadhaar_generated]
+            #print("\t".join(str(v) for v in result))
             print "{0}\t{1}".format(last_key, aadhaar_generated)
             last_key = this_key
             aadhaar_generated = float(count)
 
     # this is to catch the final counts after all records have been received.
     print "{0}\t{1}".format(last_key, aadhaar_generated)        
-
+    #print("\t".join(str(v) for v in [last_turf, turf_count]))
 reducer()
