@@ -44,8 +44,14 @@ def reducer():
             aadhaar_generated = 0 #Set aadhaar_generated value = 0 for new key
         
         old_key = this_key #Set this key as a old key
+        #Otherwise, let's add the number of aadhaar_generated in this particular key value pair to
+        #the total number of aadhaar_generated for this key and let's continue onto the next value.
         aadhaar_generated += float(count)
         
+        #We include this last if clause for the last key in our data. Because there's no next key after the
+        #last key.If we didn't have this, we could not admit a key value pair for the final key in our intermediate
+        #data. So here after we've done all this other processing up here, we just say for the last key, let's make sure
+        #we emit the key value pair.
         if old_key != None:
             print "{0}\t{1}".format(old_key, aadhaar_generated)
         
