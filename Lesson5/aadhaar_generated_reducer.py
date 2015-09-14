@@ -22,7 +22,7 @@ def reducer():
     #Note that, unlike print, logging.info will take only a single argument.
     #So logging.info("my message") will work, but logging.info("my","message") will not.
     aadhaar_generated = 0
-    old_key = None
+    last_key = None
     
     for line in sys.stdin:
         #your code here
@@ -38,12 +38,15 @@ def reducer():
           
         this_key, count = data
         
+        
+        ########### CODE 1 ##############
+        
         #So if this is a new key, let's submit the final key value pair.
-        if old_key and old_key != this_key:
-            print "{0}\t{1}".format(old_key, aadhaar_generated)
+        if last_key and last_key != this_key:
+            print "{0}\t{1}".format(last_key, aadhaar_generated)
             aadhaar_generated = 0 #Set aadhaar_generated value = 0 for new key
         
-        old_key = this_key #Set this key as a old key
+        last_key = this_key #Set this key as a old key
         #Otherwise, let's add the number of aadhaar_generated in this particular key value pair to
         #the total number of aadhaar_generated for this key and let's continue onto the next value.
         aadhaar_generated += float(count)
@@ -52,7 +55,26 @@ def reducer():
         #last key.If we didn't have this, we could not admit a key value pair for the final key in our intermediate
         #data. So here after we've done all this other processing up here, we just say for the last key, let's make sure
         #we emit the key value pair.
-        if old_key != None:
-            print "{0}\t{1}".format(old_key, aadhaar_generated)
-        
+        if last_key != None:
+            print "{0}\t{1}".format(last_key, aadhaar_generated)
+            
+            
+        ########### CODE 2 ##############
+        # if this is the first iteration
+        if not last_key:
+            last_key = this_key
+
+        # if they're the same, log it
+        if this_key == last_key:
+            aadhaar_generated += float(count)
+        else:
+            # state change (previous line was k=x, this line is k=y)
+            result = [last_key, aadhaar_generated]
+            print "{0}\t{1}".format(last_key, aadhaar_generated)
+            last_key = this_key
+            aadhaar_generated = float(count)
+
+    # this is to catch the final counts after all records have been received.
+    print "{0}\t{1}".format(last_key, aadhaar_generated)        
+
 reducer()
